@@ -1,0 +1,239 @@
+---
+pagetitle: "Your Headline Here"
+output:
+  html_document:
+    theme: null
+    highlight: null
+    mathjax: null
+    css: report.css
+    includes:
+      after_body: report_scroll.html
+knit: (function(input, ...) rmarkdown::render(
+    input, output_file = "index.html"))
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo      = FALSE,
+  message   = FALSE,
+  warning   = FALSE,
+  fig.width  = 6,
+  fig.height = 3.5,
+  dpi        = 150,
+  out.width  = "100%"
+)
+library(dplyr)
+library(ggplot2)
+library(ggridges)
+
+df <- read.csv("../data/talent_market-t3.csv")
+
+temp <- df$salary_usd
+temp <- gsub("$", "", temp)
+temp <- gsub(",", "", temp)
+temp <- gsub("USD", "", temp)
+temp <- trimws(temp)
+df$salary_usd <- as.numeric(temp)
+```
+
+<div class="report-wrap">
+
+<!-- ── HEADER ──────────────────────────────────── -->
+<!-- Edit the kicker, headline, deck, and byline.  -->
+<!-- Do not change the class names or HTML tags.   -->
+
+<header class="report-header fade-in">
+  <p class="report-kicker">
+    Data Analysis &middot; MBAA 531
+  </p>
+  <h1 class="report-headline">
+    Your headline goes here
+  </h1>
+  <p class="report-deck">
+    A one or two sentence summary of your argument.
+    What does your data reveal? Write this last,
+    once you know what the piece says.
+  </p>
+  <p class="report-byline">
+    By <strong>Your Name</strong> &middot;
+    Dataset: Your Dataset Name
+  </p>
+</header>
+
+
+<!-- ── SECTION 1: THE DATA ─────────────────────── -->
+
+::: {.report-section .fade-in}
+
+## The Data
+
+Write two or three paragraphs here introducing your
+dataset. Draw from your Test 2 Section 1 write-up.
+Answer: what does this dataset measure, how many
+observations does it have, and why does it matter?
+Write for a reader who has never seen the data.
+
+:::
+
+
+<!-- ── SECTION 2: THE CENTRAL FINDING ─────────── -->
+
+::: {.report-section .fade-in}
+
+## The Central Finding
+
+Introduce the derived variable you created in
+Test 2 Section 4. Explain what it measures and why
+it matters. Then the pull stat block below presents
+the summary statistic at a glance.
+
+<!-- Edit the number and label text only.          -->
+<!-- Do not change the class names or HTML tags.   -->
+
+<div class="pull-stat fade-in">
+  <span class="stat-number">0.00</span>
+  <span class="stat-label">
+    Replace with your statistic and a one-line
+    explanation of what it means in plain language.
+  </span>
+</div>
+
+Continue the narrative here. What does this number
+reveal? Name the variable, the unit of measurement,
+and what a high or low value means in context.
+
+:::
+
+
+<!-- ── SECTION 3: SCATTER CHART ───────────────── -->
+
+::: {.report-section .fade-in}
+
+## A Closer Look
+
+Write one paragraph before the chart that tells the
+reader what to look for. Set up the expectation
+first, then let the chart confirm or complicate
+it. Draw from your Test 3 Chart 2 interpretation.
+
+<div class="chart-wrap">
+
+```{r scatter}
+# Paste your scatter chart from Test 3 here.
+# Replace colA and colB with your column names.
+# Keep the theme calls, they match the page style.
+ggplot(df, aes(x = salary_usd, y = experience_yrs)) +
+  geom_point(
+    alpha  = 0.35,
+    size   = 1.4,
+    colour = "#c0392b"
+  ) +
+  labs(title = NULL, x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(
+      colour = "#eeeeee"
+    ),
+    axis.text = element_text(colour = "#555")
+  )
+```
+
+<p class="chart-caption">
+  Chart 1: replace with a short description of what
+  the chart shows. Include axis names and units.
+</p>
+</div>
+
+Write one or two sentences after the chart
+connecting what the reader just saw to the broader
+argument.
+
+:::
+
+
+<!-- ── SECTION 4: RIDGE CHART ─────────────────── -->
+
+::: {.report-section .fade-in}
+
+## Across Groups
+
+Write one paragraph before the chart. Which grouping
+variable did you choose, and what did you expect to
+see? Draw from your Test 4 Section 3 justification.
+
+<div class="chart-wrap">
+
+```{r ridge, eval=FALSE}
+# Paste your best ridge chart from Test 4 here.
+# Replace colX and groupCol with your column names.
+ggplot(df, aes(x    = colX,
+               y    = groupCol,
+               fill = groupCol)) +
+  geom_density_ridges(
+    alpha     = 0.55,
+    colour    = "white",
+    linewidth = 0.4
+  ) +
+  scale_fill_manual(
+    values = rep("#c0392b", 20)
+  ) +
+  labs(title = NULL, x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position    = "none",
+    panel.grid.minor   = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(
+      colour = "#eeeeee"
+    ),
+    axis.text = element_text(colour = "#555")
+  )
+```
+
+<p class="chart-caption">
+  Chart 2: replace with a short description.
+  Name the grouping variable and the continuous
+  variable on the x-axis.
+</p>
+</div>
+
+Write two or three sentences interpreting the chart.
+Which groups stand out? What does this reveal that
+the scatter chart did not?
+
+:::
+
+
+<!-- ── CONCLUSION ──────────────────────────────── -->
+
+::: {.report-section .fade-in}
+
+## What This Means
+
+Write two or three paragraphs closing the piece.
+Return to the headline claim and show how the two
+charts together support it. What would you want a
+decision-maker to take away? What question does the
+data leave unanswered?
+
+:::
+
+
+<!-- ── FOOTER ──────────────────────────────────── -->
+
+<footer class="report-footer">
+  <p>
+    Published via GitHub Pages &middot;
+    MBAA 531 Data Analytics &middot;
+    Vancouver Island University
+  </p>
+  <p>
+    Source:
+    <a href="https://github.com/yourusername/mbaa531-report">
+      github.com/yourusername/mbaa531-report
+    </a>
+  </p>
+</footer>
+
+</div><!-- end .report-wrap -->

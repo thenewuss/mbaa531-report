@@ -1,0 +1,174 @@
+/* ── Reset & base ──────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #faf9f7;
+  color: #1a1a1a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+/* ── Layout ────────────────────────────────────── */
+.report-wrap {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+/* Tighten padding on narrow screens */
+@media (max-width: 600px) {
+  .report-wrap {
+    padding: 0 1rem 4rem;
+  }
+  .report-headline {
+    font-size: 1.9rem;
+  }
+}
+
+/* ── Header ────────────────────────────────────── */
+.report-header {
+  padding: 5rem 0 3rem;
+  border-bottom: 3px solid #1a1a1a;
+  margin-bottom: 3rem;
+}
+
+.report-kicker {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c0392b;
+  margin-bottom: 1rem;
+}
+
+.report-headline {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.report-deck {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: #444;
+  margin-bottom: 1.75rem;
+}
+
+.report-byline {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 0.04em;
+}
+
+.report-byline strong {
+  color: #1a1a1a;
+}
+
+/* ── Body sections ─────────────────────────────── */
+/* Targets fenced divs: ::: {.report-section .fade-in} */
+.report-section {
+  margin-bottom: 8rem;
+  padding-top: 2rem;
+}
+
+/* h2 inside a .report-section fenced div */
+.report-section h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c0392b;
+  margin-bottom: 1.5rem;
+}
+
+.report-section p {
+  margin-bottom: 2rem;
+}
+
+/* ── Pull stat ─────────────────────────────────── */
+.pull-stat {
+  border-left: 4px solid #c0392b;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  background: #fff;
+}
+
+.pull-stat .stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #c0392b;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.pull-stat .stat-label {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ── Chart wrapper ─────────────────────────────── */
+.chart-wrap {
+  margin: 2rem 0 0.5rem;
+  background: #fff;
+  padding: 1.25rem 1.25rem 0.75rem;
+  border-top: 2px solid #1a1a1a;
+}
+
+/* Make knitr img tags fill the wrapper */
+.chart-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-caption {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* ── Footer ────────────────────────────────────── */
+.report-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+  margin-top: 5rem;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.78rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+.report-footer a {
+  color: #555;
+}
+
+/* ── Scroll fade-in ────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
